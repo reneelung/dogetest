@@ -74,7 +74,7 @@
             ),
         )
     );
-
+print_r($phrases);
     $options = array(
         'http' => array(
             'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
