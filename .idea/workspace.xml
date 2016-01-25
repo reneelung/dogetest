@@ -37,11 +37,11 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41666666">
-              <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.01984127">
+              <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
               <folding>
-                <element signature="e#434#2037#0#PHP" expanded="false" />
-                <element signature="e#2055#2266#0#PHP" expanded="false" />
+                <element signature="e#458#2061#0#PHP" expanded="false" />
+                <element signature="e#2079#2290#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -175,11 +175,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41666666">
-          <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.01984127">
+          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
           <folding>
-            <element signature="e#434#2037#0#PHP" expanded="false" />
-            <element signature="e#2055#2266#0#PHP" expanded="false" />
+            <element signature="e#458#2061#0#PHP" expanded="false" />
+            <element signature="e#2079#2290#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
