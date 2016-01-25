@@ -1,10 +1,12 @@
 <?php
     require('lib.php');
+    require('wordnik/Swagger.php');
 
     const USERNAME = 'ReneeLung';
     const PASSWORD = 'pagerdutydoge';
     const URL = 'https://api.imgflip.com/caption_image';
     const TEMPLATE = 8072285;
+    const WORDNIK_API_KEY = 'f0a2ef63198e524dac0080a2bf106182fb048283b81da8dc6';
 
     $payload = $_POST['text'];
     $respond_to = $_POST['response_url'];
@@ -65,7 +67,7 @@
             ),
         )
     );
-print_r($phrases);
+
     $options = array(
         'http' => array(
             'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -76,6 +78,11 @@ print_r($phrases);
 
     $context  = stream_context_create($options);
     $result = json_decode(file_get_contents(URL, false, $context), true);
+
+    $client = new APIClient($myAPIKey, 'http://api.wordnik.com/v4');
+    $wordApi = new WordApi($client);
+    $example = $wordApi->getRandomWord('noun');
+    echo $example->text;
 
     if (!$result['success'] && (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')) {
         echo "very sadness, so cry";
