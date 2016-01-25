@@ -79,7 +79,7 @@
     $context  = stream_context_create($options);
     $result = json_decode(file_get_contents(URL, false, $context), true);
 
-    $client = new APIClient($myAPIKey, 'http://api.wordnik.com/v4');
+    $client = new APIClient(WORDNIK_API_KEY, 'http://api.wordnik.com/v4');
     $wordApi = new WordApi($client);
     $example = $wordApi->getRandomWord('noun');
     echo $example->text;
