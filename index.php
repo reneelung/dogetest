@@ -10,6 +10,20 @@
     $respond_to = $_POST['response_url'];
     $phrases = extract_phrases($_POST);
 
+require('wordnik/Swagger.php');
+const WORDNIK_API_KEY = 'f0a2ef63198e524dac0080a2bf106182fb048283b81da8dc6';
+
+function wordnik_request($part_of_speech)
+{
+    $wordnik = new APIClient(WORDNIK_API_KEY, 'http://api.wordnik.com/v4');
+    $response = $wordnik->getRandomWord($part_of_speech);
+
+    return $response->text;
+}
+
+$test = new APIClient(WORDNIK_API_KEY, 'http://api.wordnik.com/v4');
+print_r($test->getRandomWord('noun'));
+
     if (!$phrases)
     {
         $phrases[] = "so ".wordnik_request('noun');
