@@ -1,11 +1,7 @@
 <?php
 
     require('lib.php');
-
-
-
     const URL = 'https://api.imgflip.com/caption_image';
-
 
     $payload = $_POST['text'];
     $respond_to = $_POST['response_url'];
@@ -28,42 +24,34 @@
     $context  = stream_context_create($options);
     $result = json_decode(file_get_contents(URL, false, $context), true);
 
-    if (!$result['success'] && (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')) {
+    if (!$result['success'] && is_ajax()) {
         echo "very sadness, so cry";
         exit;
     } else if (!$result['success']) {
         echo "<html><body><img src='https://media.giphy.com/media/JEVqknUonZJWU/giphy.gif'></body></html>";
         exit;
-    } else {
+    } else if ($result['success'] && !is_ajax()) {
         echo "<html><body><img src='{$result['data']['url']}'></body></html>";
-    }
-
-    $doge_says = array(
-        'response_type' => 'in_channel',
-        'text' => 'So Doge, Very Slack!',
-        'attachments' => array(
-            array (
-                'fallback' => 'Very Doge!',
-                'title' => preg_replace('/,/g', ', ', $payload),
-                'title_link' => $result['data']['page_url'],
-                'image_url' => $result['data']['url']
+    } else if ($result['success'] && is_ajax()) {
+        $doge_says = array(
+            'response_type' => 'in_channel',
+            'text' => 'So Doge, Very Slack!',
+            'attachments' => array(
+                array (
+                    'fallback' => 'Very Doge!',
+                    'title' => preg_replace('/,/g', ', ', $payload),
+                    'title_link' => $result['data']['page_url'],
+                    'image_url' => $result['data']['url']
+                )
             )
-        )
-    );
+        );
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $respond_to);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($doge_says));
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $respond_to);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($doge_says));
 
-    $response = curl_exec($ch);
-
-    if (!$response)
-    {
-        echo "very sadness, so cry";
-        exit;
+        $response = curl_exec($ch);
     }
 ?>
-
-hello hello hello
